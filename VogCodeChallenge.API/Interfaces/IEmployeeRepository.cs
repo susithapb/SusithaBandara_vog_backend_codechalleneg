@@ -6,7 +6,7 @@ using VogCodeChallenge.API.Entities;
 
 namespace VogCodeChallenge.API.Interfaces
 {
-    interface IEmployeeRepository
+    public interface IEmployeeRepository
     {
         public IEnumerable<Employee> GetAll();
         public IList<Employee> ListAll();
