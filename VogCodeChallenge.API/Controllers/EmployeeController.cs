@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using VogCodeChallenge.API.Dtos;
 using VogCodeChallenge.API.Entities;
 using VogCodeChallenge.API.Interfaces;
+using VogCodeChallenge.API.Repositories;
 
 namespace VogCodeChallenge.API.Controllers
 {
@@ -19,6 +20,7 @@ namespace VogCodeChallenge.API.Controllers
         {
             _repisitory = repository;
         }
+         
 
         [HttpGet]
         public IEnumerable<EmployeeDto> GetAll()
@@ -27,6 +29,7 @@ namespace VogCodeChallenge.API.Controllers
             return employees;
         }
 
+       
         [HttpGet("departments")]
         public IEnumerable<DepartmentDto> GetDepartments()
         {
