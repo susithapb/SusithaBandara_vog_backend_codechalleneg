@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VogCodeChallenge.API.Dtos;
 using VogCodeChallenge.API.Entities;
 using VogCodeChallenge.API.Interfaces;
 
@@ -20,15 +21,17 @@ namespace VogCodeChallenge.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Employee> GetAll()
+        public IEnumerable<EmployeeDto> GetAll()
         {
-            return _repisitory.GetAll();            
+            var employees = _repisitory.GetAll().Select(employee => employee.AsEmpDto());
+            return employees;
         }
 
         [HttpGet("departments")]
-        public IEnumerable<Department> GetDepartments()
+        public IEnumerable<DepartmentDto> GetDepartments()
         {
-            return _repisitory.GetDepartments();
+            var departments =  _repisitory.GetDepartments().Select(department => department.AsDeptDto());
+            return departments;
         }
 
         IList<Employee> ListAll()
@@ -37,7 +40,7 @@ namespace VogCodeChallenge.API.Controllers
         }
 
         [HttpGet("departments/{departmentId}")]
-        public ActionResult<IEnumerable<Employee>> GetEmployeesByDepartment(int departmentId)
+        public ActionResult<IEnumerable<EmployeeDto>> GetEmployeesByDepartment(int departmentId)
         {
             var departmentList = _repisitory.GetDepartments();
             Boolean temp = false;
@@ -55,7 +58,7 @@ namespace VogCodeChallenge.API.Controllers
                 return NotFound();
             }
 
-            return Ok(_repisitory.GetEmployeesByDepartment(departmentId));
+            return Ok(_repisitory.GetEmployeesByDepartment(departmentId).Select(employee => employee.AsEmpDto()));
         }
         
     }
