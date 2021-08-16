@@ -31,7 +31,7 @@ namespace TestModule
                     return Convert.ToInt32(x) * 3;                    
 
                 case object x when Convert.ToInt32(x) < 1:
-                    return "Invalid input exception";
+                    return "Argument Exception: The given input is invalid.";
 
                 case object x when  (float)Convert.ToInt32(x) == 1.0f || (float)Convert.ToInt32(x) == 2.0f:
                     return 3.0f;            
